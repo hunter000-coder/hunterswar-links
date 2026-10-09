@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="color-scheme" content="dark">
+  <title>Leading by Example | Hunter's War</title>
+  <meta name="description" content="An interactive guide to the Defence Leadership Vision: the BE-KNOW-DO model, Defence values, leadership styles, followership, a quiz and reflection prompts.">
+  <meta property="og:title" content="Leading by Example: the Defence Leadership Vision">
+  <meta property="og:description" content="Learn the BE-KNOW-DO leadership model with an interactive guide, quiz and scenarios.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M9 3h14l8 13-8 13H9L1 16z' fill='%23e8344b'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: rgba(255,255,255,0.07);
+      --card-strong: rgba(255,255,255,0.11);
+      --line: rgba(255,255,255,0.14);
+      --text: #ffffff;
+      --muted: #bdbdbd;
+      --dim: #8f8f8f;
+      --accent: #e8344b;
+      --accent-hover: #cc2a3e;
+      --good: #4cc38a;
+      --bad: #ff7a7a;
+      /* slate-teal ramp echoing the source document's palette */
+      --l-be: #17323d;
+      --l-know: #1f4756;
+      --l-do: #29596b;
+      --l-group: #346c80;
+      --l-context: #407f95;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; min-height: 100vh; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    :focus-visible { outline: 3px solid #fff; outline-offset: 2px; border-radius: 6px; }
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- header ---------- */
+    header.hero { padding: 36px 0 18px; text-align: center; }
+    .kicker { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim); }
+    .kicker a { text-decoration: none; }
+    .kicker a:hover { color: var(--text); }
+    h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; line-height: 0.95; font-size: clamp(44px, 12vw, 76px); margin: 14px 0 12px; }
+    .hero p.lede { color: var(--muted); max-width: 560px; margin: 0 auto; font-size: 15.5px; }
+    .hero .edition { margin-top: 10px; font-size: 12.5px; color: var(--dim); }
+    .progress { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 18px; }
+    .pill { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 12.5px; color: var(--muted); }
+    .pill b { color: var(--text); }
+
+    /* ---------- tabs ---------- */
+    nav.tabs { position: sticky; top: 0; z-index: 20; background: rgba(13,13,13,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    nav.tabs .wrap { display: flex; gap: 6px; padding-top: 10px; padding-bottom: 10px; }
+    .tab { flex: 1; background: transparent; border: 1px solid transparent; border-radius: 999px; padding: 9px 6px; font-size: 14px; font-weight: 600; color: var(--muted); transition: background .15s, color .15s; }
+    .tab:hover { color: var(--text); background: var(--card); }
+    .tab[aria-selected="true"] { background: var(--accent); color: #fff; }
+    main { padding: 26px 0 60px; }
+    .panel[hidden] { display: none; }
+
+    /* ---------- generic ---------- */
+    h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(26px, 6vw, 34px); line-height: 1.1; margin: 0 0 6px; }
+    h3 { font-size: 17px; margin: 0 0 6px; }
+    .sec { margin-bottom: 44px; scroll-margin-top: 76px; }
+    .sec > .sub { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
+    .eyebrow { font-size: 11.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 4px; }
+    .card { background: var(--card); border-radius: 16px; padding: 18px 20px; }
+    .card + .card { margin-top: 12px; }
+    p + p { margin-top: 10px; }
+    .muted { color: var(--muted); }
+    ul.tidy { list-style: none; display: grid; gap: 8px; }
+    ul.tidy li { padding-left: 22px; position: relative; color: #e6e6e6; font-size: 15px; }
+    ul.tidy li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 8px; height: 8px; background: var(--accent); clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+    .btn { display: inline-block; background: var(--accent); color: #fff; border: 0; border-radius: 999px; padding: 12px 24px; font-weight: 600; font-size: 15px; text-decoration: none; transition: background .15s, transform .15s; }
+    .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+    .btn.ghost:hover { background: var(--card); color: var(--text); }
+    .btn[disabled] { opacity: .4; pointer-events: none; }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+    .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 30px; }
+    .jump a { text-decoration: none; font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+    .jump a:hover { color: var(--text); background: var(--card); }
+
+    /* ---------- three hexes ---------- */
+    .hexes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+    .hex { background: linear-gradient(160deg, var(--l-group), var(--l-know)); padding: 22px 12px; text-align: center; font-size: 14px; font-weight: 600; line-height: 1.3; clip-path: polygon(0 12%, 50% 0, 100% 12%, 100% 88%, 50% 100%, 0 88%); display: flex; align-items: center; justify-content: center; min-height: 118px; }
+    @media (max-width: 480px) { .hex { font-size: 12.5px; padding: 18px 8px; min-height: 110px; } }
+    .levels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (max-width: 480px) { .levels { grid-template-columns: 1fr; } }
+    .level { background: var(--card); border-radius: 14px; padding: 14px 16px; border-left: 4px solid var(--accent); }
+    .level b { display: block; font-size: 15px; }
+    .level span { font-size: 14px; color: var(--muted); }
+
+    /* ---------- BE-KNOW-DO model ---------- */
+    .model { display: grid; gap: 16px; }
+    .stack { display: grid; gap: 6px; justify-items: center; }
+    .layer { width: 100%; border: 1px solid transparent; border-radius: 14px; padding: 12px 16px; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 10px; transition: transform .15s, border-color .15s, filter .15s; }
+    .layer[data-id="context"] { width: 100%; background: var(--l-context); }
+    .layer[data-id="group"] { width: 90%; background: var(--l-group); }
+    .layer[data-id="do"] { width: 80%; background: var(--l-do); }
+    .layer[data-id="know"] { width: 70%; background: var(--l-know); }
+    .layer[data-id="be"] { width: 60%; background: var(--l-be); }
+    .layer:hover { filter: brightness(1.15); }
+    .layer[aria-pressed="true"] { border-color: #fff; transform: scale(1.015); }
+    .layer .name { font-weight: 800; letter-spacing: 1.2px; font-size: 15px; }
+    .layer .who { font-size: 12.5px; opacity: .85; text-align: right; }
+    @media (max-width: 480px) { .layer[data-id="be"] { width: 70%; } .layer[data-id="know"] { width: 76%; } .layer[data-id="do"] { width: 84%; } .layer[data-id="group"] { width: 92%; } }
+    .detail { background: var(--card-strong); border-radius: 16px; padding: 20px; border-top: 4px solid var(--accent); }
+    .detail h3 { font-size: 22px; margin-bottom: 2px; }
+    .detail .tag { color: var(--accent); font-size: 12.5px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+    .detail .ask { margin-top: 16px; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.06); font-size: 14px; color: #ddd; }
+    .detail .ask b { display: block; font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .detail .ask li { margin-left: 18px; }
+    .note { font-size: 13px; color: var(--dim); }
+
+    /* ---------- details (accordions) ---------- */
+    details.acc { background: var(--card); border-radius: 14px; }
+    details.acc + details.acc { margin-top: 10px; }
+    details.acc summary { list-style: none; cursor: pointer; padding: 15px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-weight: 700; font-size: 16px; }
+    details.acc summary::-webkit-details-marker { display: none; }
+    details.acc summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--accent); flex: none; }
+    details.acc[open] summary::after { content: "–"; }
+    details.acc .body { padding: 0 18px 18px; color: #e0e0e0; font-size: 15px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { background: rgba(255,255,255,0.09); border-radius: 999px; padding: 5px 12px; font-size: 13.5px; }
+    .valuegrid { display: grid; gap: 10px; }
+    .value-ic { width: 34px; height: 34px; flex: none; background: var(--l-group); clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); display: grid; place-items: center; font-size: 15px; font-weight: 800; }
+    .value-title { display: flex; align-items: center; gap: 12px; }
+
+    /* ---------- style finder ---------- */
+    .finder { display: grid; gap: 16px; }
+    fieldset { border: 0; min-width: 0; }
+    .finder > * { min-width: 0; }
+    legend { font-size: 13px; color: var(--muted); margin-bottom: 8px; letter-spacing: .3px; }
+    .seg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+    .seg button { background: rgba(255,255,255,0.07); border: 1px solid var(--line); border-radius: 12px; padding: 11px 10px; font-size: 14px; font-weight: 600; color: var(--muted); }
+    .seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .result { background: var(--card-strong); border-radius: 16px; padding: 18px 20px; border-left: 5px solid var(--accent); }
+    .result .big { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 26px; line-height: 1.1; margin-bottom: 6px; }
+    .modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+    .mode { font-size: 12.5px; text-align: center; padding: 8px 4px; border-radius: 10px; background: rgba(255,255,255,0.07); color: var(--dim); font-weight: 600; }
+    .mode.on { background: var(--l-group); color: #fff; }
+
+    /* ---------- forces ---------- */
+    .force-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .force-chips button { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 7px 16px; font-size: 14px; font-weight: 600; color: var(--muted); }
+    .force-chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    blockquote.pull { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(22px, 5.5vw, 30px); line-height: 1.2; border-left: 4px solid var(--accent); padding-left: 18px; margin: 12px 0 6px; }
+    blockquote.pull + .cite { color: var(--dim); font-size: 13px; padding-left: 22px; }
+
+    /* ---------- quiz / scenarios ---------- */
+    .qhead { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .bar { height: 6px; background: var(--card-strong); border-radius: 999px; overflow: hidden; margin-bottom: 18px; }
+    .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+    .question { font-size: 19px; font-weight: 700; line-height: 1.35; margin-bottom: 14px; }
+    .opts { display: grid; gap: 10px; }
+    .opt { text-align: left; background: var(--card); border: 1.5px solid transparent; border-radius: 14px; padding: 14px 16px; font-size: 15px; display: flex; gap: 12px; align-items: flex-start; }
+    .opt:hover:not([disabled]) { background: var(--card-strong); }
+    .opt .k { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--dim); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 1px; }
+    .opt[disabled] { cursor: default; }
+    .opt.right { border-color: var(--good); background: rgba(76,195,138,0.12); }
+    .opt.right .k { background: var(--good); border-color: var(--good); color: #0d0d0d; }
+    .opt.wrong { border-color: var(--bad); background: rgba(255,122,122,0.10); }
+    .opt.wrong .k { background: var(--bad); border-color: var(--bad); color: #0d0d0d; }
+    .opt.dim { opacity: .55; }
+    .why { margin-top: 14px; background: var(--card); border-radius: 14px; padding: 14px 16px; font-size: 14.5px; color: #e4e4e4; }
+    .why b.verdict { display: block; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; }
+    .why.good b.verdict { color: var(--good); }
+    .why.bad b.verdict { color: var(--bad); }
+    .score-big { font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: 64px; line-height: 1; }
+    .review { margin-top: 16px; display: grid; gap: 8px; }
+    .review div { background: var(--card); border-radius: 12px; padding: 10px 14px; font-size: 14px; }
+    .review span { color: var(--accent); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; display: block; }
+    .scn-setup { background: var(--card-strong); border-radius: 16px; padding: 18px 20px; margin-bottom: 14px; font-size: 15.5px; }
+    .scn-setup .eyebrow { margin-bottom: 6px; }
+
+    /* ---------- reflect ---------- */
+    .prompt { background: var(--card); border-radius: 16px; padding: 16px 18px; }
+    .prompt + .prompt { margin-top: 12px; }
+    .prompt label { display: block; font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+    .prompt .from { font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); font-weight: 700; display: block; margin-bottom: 6px; }
+    textarea { width: 100%; min-height: 84px; resize: vertical; background: rgba(0,0,0,0.35); border: 1px solid var(--line); border-radius: 12px; color: var(--text); padding: 11px 13px; font: inherit; font-size: 15px; margin-top: 8px; }
+    textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+    .toast { font-size: 13px; color: var(--good); min-height: 20px; }
+
+    /* ---------- footer ---------- */
+    footer { border-top: 1px solid var(--line); padding: 26px 0 50px; color: var(--dim); font-size: 12.5px; line-height: 1.6; }
+    footer p + p { margin-top: 8px; }
+    footer a { color: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+    noscript .wrap { padding-top: 30px; }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker"><a href="/">Hunter's War</a> · Learning tool</p>
+      <h1>Leading by Example</h1>
+      <p class="lede">An interactive guide to the Defence Leadership Vision: who a leader <em>is</em>, what they <em>know</em>, and what they <em>do</em>.</p>
+      <p class="edition">Based on the 2025 edition from Belgian Defence's Defence Centre for Leadership</p>
+      <div class="progress" id="progress" aria-label="Your progress"></div>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Sections">
+    <div class="wrap" role="tablist">
+      <button class="tab" role="tab" id="tab-learn" aria-controls="panel-learn" data-tab="learn">Learn</button>
+      <button class="tab" role="tab" id="tab-quiz" aria-controls="panel-quiz" data-tab="quiz">Quiz</button>
+      <button class="tab" role="tab" id="tab-scenarios" aria-controls="panel-scenarios" data-tab="scenarios">Scenarios</button>
+      <button class="tab" role="tab" id="tab-reflect" aria-controls="panel-reflect" data-tab="reflect">Reflect</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <noscript><p class="card">This guide needs JavaScript turned on to work.</p></noscript>
+
+    <!-- ================= LEARN ================= -->
+    <section class="panel" id="panel-learn" role="tabpanel" aria-labelledby="tab-learn" hidden>
+      <div class="jump" aria-label="Jump to a topic">
+        <a href="#s-what">What is leadership?</a>
+        <a href="#s-model">BE-KNOW-DO</a>
+        <a href="#s-values">Values</a>
+        <a href="#s-competences">Competences</a>
+        <a href="#s-style">Style</a>
+        <a href="#s-followers">Followership</a>
+        <a href="#s-forces">The Forces speak</a>
+      </div>
+
+      <div class="sec" id="s-what">
+        <p class="eyebrow">1 · The foundation</p>
+        <h2>What is leadership?</h2>
+        <p class="sub">The vision says the word keeps changing (charismatic, servant, situational, transformational...), but three elements show up in every definition.</p>
+        <div class="hexes" role="list">
+          <div class="hex" role="listitem">A process of ethically based influence</div>
+          <div class="hex" role="listitem">About achieving common objectives</div>
+          <div class="hex" role="listitem">Aims at the growth and success of individuals and the organisation</div>
+        </div>
+        <div class="card">
+          <ul class="tidy">
+            <li><b>Influence, not coercion.</b> Leadership is a two-way process between leader and group, built on role-modelling, inspiration, support, coaching and empowerment, "without coercion or pure power".</li>
+            <li><b>Results, with meaning.</b> Leadership is a means to results achieved in a professional and ethical way. A leader explains <i>why</i> a goal matters.</li>
+            <li><b>Growth.</b> Good leaders grow their people and themselves through feedback and self-reflection.</li>
+          </ul>
+        </div>
+        <h3 style="margin-top:22px">Four levels of leadership</h3>
+        <div class="levels">
+          <div class="level"><b>Lead self</b><span>Knowing and mastering yourself: strengths, weaknesses, values and character.</span></div>
+          <div class="level"><b>Lead team</b><span>Fostering trust, knowledge sharing and psychological safety.</span></div>
+          <div class="level"><b>Lead organisation</b><span>Leading through others in dispersed structures by delegating and promoting a shared vision.</span></div>
+          <div class="level"><b>Lead strategic</b><span>Leading at the highest echelons of risk, responsibility and complexity.</span></div>
+        </div>
+      </div>
+
+      <div class="sec" id="s-model">
+        <p class="eyebrow">2 · The core model</p>
+        <h2>The BE-KNOW-DO model</h2>
+        <p class="sub">Leaders, followers and context influence one another continuously. At the core is who you are, then what you need to know and do. Tap a layer to explore it.</p>
+        <div class="model">
+          <div class="stack" id="stack" role="group" aria-label="Layers of the leadership model"></div>
+          <div class="detail" id="detail" aria-live="polite"></div>
+          <p class="note">The arrows in the original model run both ways: feedback between the layers is what creates a learning environment.</p>
+        </div>
+      </div>
+
+      <div class="sec" id="s-values">
+        <p class="eyebrow">3 · KNOW → Defence values</p>
+        <h2>Four core values</h2>
+        <p class="sub">Respect, courage, integrity and loyalty shape identity and give cohesion and certainty. Both civilian and military personnel must consciously uphold them. When personal values clash with the organisation's, people can end up leaving.</p>
+        <div class="valuegrid" id="values"></div>
+        <p class="card muted" style="margin-top:14px;font-size:14.5px">Leaders show who they are through what they do. By not just knowing the values but <b style="color:#fff">embodying</b> them, they build trust and a culture where people feel safe, recognised and engaged.</p>
+      </div>
+
+      <div class="sec" id="s-competences">
+        <p class="eyebrow">4 · KNOW → Competences</p>
+        <h2>What a leader needs to know</h2>
+        <p class="sub">A <b>skill</b> is the ability to perform an action or solve a problem. An <b>attitude</b> is how you approach a task. A <b>competence</b> combines knowledge, skills and attitudes, and it can be developed.</p>
+        <div class="card">
+          <h3>Professional competences</h3>
+          <p class="muted" style="font-size:15px">Technical skills specific to a role, field or profession, gained through education or experience. They vary by position and are essential for results and for keeping your team's trust.</p>
+        </div>
+        <div class="card">
+          <h3>Three kinds of skill</h3>
+          <div class="chips" style="margin-top:8px">
+            <span class="chip">Technical: master the profession</span>
+            <span class="chip">Human: collaborate with others</span>
+            <span class="chip">Conceptual: see the bigger picture</span>
+          </div>
+          <p class="note" style="margin-top:10px">Their importance varies with the level at which you lead. Three broader competences underpin them: problem-solving, social judgement and sound knowledge of your field.</p>
+        </div>
+        <h3 style="margin:22px 0 10px">Behavioural competences: five clusters</h3>
+        <div id="clusters"></div>
+        <div class="card" style="margin-top:14px">
+          <h3>Leadership can be developed</h3>
+          <p class="muted" style="font-size:15px">Some people have natural talent for communication or negotiation and may progress faster, but those with less innate talent can become just as effective. Development happens through training, courses, evaluations, coaching and mentoring, and it is a collective effort, not a solo one. True leadership emerges "when people choose to follow the leader because they trust them."</p>
+        </div>
+      </div>
+
+      <div class="sec" id="s-style">
+        <p class="eyebrow">5 · DO → Adapting style</p>
+        <h2>Choosing your leadership style</h2>
+        <p class="sub">Everyone has a preferred style, but effective leaders flex it without losing authenticity. Two dimensions matter: <b>task orientation</b> (goals, organisation, control) and <b>relationship orientation</b> (motivation, support, collaboration). Both rest on respect and mutual trust.</p>
+        <div class="card" style="margin-bottom:14px">
+          <h3>Three situational factors to read</h3>
+          <ul class="tidy" style="margin-top:8px">
+            <li><b>Relationship with the group.</b> Base authority on trust and competence, not just formal power.</li>
+            <li><b>Group characteristics.</b> Analyse experience, competence and motivation, and give less confident people more guidance and experienced people more autonomy.</li>
+            <li><b>Nature and context of the task.</b> Complex tasks call for a relationship-oriented style; routine tasks under time pressure call for a directive one.</li>
+          </ul>
+        </div>
+        <div class="finder card">
+          <div>
+            <h3>Try it: style finder</h3>
+            <p class="note">A rule of thumb built from the factors above, not an official matrix.</p>
+          </div>
+          <fieldset>
+            <legend>Who are you leading?</legend>
+            <div class="seg" id="seg-team">
+              <button type="button" data-v="new" aria-pressed="true">Newly arrived, less experienced</button>
+              <button type="button" data-v="exp" aria-pressed="false">Experienced and engaged</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>What is the task?</legend>
+            <div class="seg" id="seg-task">
+              <button type="button" data-v="routine" aria-pressed="true">Routine, under time pressure</button>
+              <button type="button" data-v="complex" aria-pressed="false">Complex, room to think</button>
+            </div>
+          </fieldset>
+          <div class="result" id="result" aria-live="polite"></div>
+        </div>
+        <p class="note" style="margin-top:12px">The vision also asks leaders to consciously switch between <b>leading, guiding, supporting and delegating</b>, depending on who is in front of them and what the mission requires.</p>
+        <div class="card" style="margin-top:14px">
+          <h3>Inspire by leading by example</h3>
+          <p class="muted" style="font-size:15px">Leaders are followed for what they do, not what they say. Four principles help build a climate of mutual respect, development and operational readiness:</p>
+          <div class="chips" style="margin-top:10px">
+            <span class="chip">Idealised influence</span>
+            <span class="chip">Inspiring motivation</span>
+            <span class="chip">Intellectual stimulation</span>
+            <span class="chip">Individualised consideration</span>
+          </div>
+          <p class="muted" style="font-size:15px;margin-top:12px">That includes recognising and correcting your own mistakes.</p>
+        </div>
+        <details class="acc" style="margin-top:14px">
+          <summary>Decisions, ethical dilemmas and communication</summary>
+          <div class="body">
+            <ul class="tidy">
+              <li><b>Decide.</b> Analyse, draw conclusions, set clear objectives and make sure the team knows <i>why</i> they matter. Objectives only gain power when they are shared and embraced.</li>
+              <li><b>Account for it.</b> Decisions may be made under time pressure or with incomplete information. You must be able to frame, justify and account for them, and show the moral courage to stand by them.</li>
+              <li><b>Ethical dilemmas.</b> When values or norms conflict there is "no perfect solution without a moral cost". You act from your deepest convictions and Defence's core values, and carry the choice with integrity.</li>
+              <li><b>Communicate.</b> Two-way communication with room for feedback reduces misunderstandings. Speak and write clearly, use body language consciously and listen with empathy.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <div class="sec" id="s-followers">
+        <p class="eyebrow">6 · GROUP and CONTEXT</p>
+        <h2>Followership and change</h2>
+        <p class="sub">Leadership is not determined by the leader alone, but also by the group and context. The aim is to turn a collection of individuals into a cohesive team.</p>
+        <details class="acc" open>
+          <summary>The courageous follower</summary>
+          <div class="body">
+            <p>Leading and following are inseparable, and within Defence a leader most often also plays the follower. Followership is "not a subordinate or less important role, but an essential counterpart to leadership". A good follower is proactive, self-reliant, disciplined and contributes actively to shared objectives.</p>
+            <ul class="tidy" style="margin-top:10px">
+              <li>View the leader and follower roles side by side. They involve different tasks and capabilities.</li>
+              <li>Train followers too, not only leaders.</li>
+              <li>Followers own their actions, but the leader ultimately keeps the final responsibility.</li>
+              <li>Create a climate where critical thinking is possible, so a courageous follower dares to say what could be done differently.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Cohesion, wellbeing and a learning group</summary>
+          <div class="body">
+            <ul class="tidy">
+              <li>Build cohesion by safeguarding the team's interests, creating trust and appreciation, setting clear rules against discrimination and racism, and mediating conflicts.</li>
+              <li>Leadership is not about popularity. A certain distance stays necessary to be objective and adaptable.</li>
+              <li>Protect physical and mental safety, prevent work-related incidents and take responsibility, accept residual risk and provide accountability.</li>
+              <li>Turn the team into a <b>learning group</b> where people develop their own and each other's competences.</li>
+              <li><b>Unity in diversity:</b> feel responsible for every follower, whatever their race, gender, sexual orientation or identity, or religious belief, and use everyone's talents towards the common goal.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="acc">
+          <summary>Leading through change: adaptive leadership</summary>
+          <div class="body">
+            <p>Change is a constant within Defence, and a fixed style does not suffice. In adaptive leadership the leader:</p>
+            <ol class="tidy" style="margin-top:10px;counter-reset:s">
+              <li><b>Steps back</b> to see the bigger picture.</li>
+              <li><b>Identifies the challenges</b> the group faces and how to tackle them.</li>
+              <li><b>Manages tensions</b>, creating enough calm and trust to keep functioning without letting discipline slip.</li>
+              <li><b>Gives direction first</b> to overcome resistance to change.</li>
+              <li><b>Returns the work and responsibility to the team in good time</b>, so people can develop their own solutions.</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <div class="sec" id="s-forces">
+        <p class="eyebrow">7 · In practice</p>
+        <h2>The Forces speak</h2>
+        <p class="sub">Each component of Belgian Defence adds its own emphasis to the shared model. Pick one.</p>
+        <div class="force-chips" id="force-chips" role="group" aria-label="Choose a Force"></div>
+        <div class="card" id="force-body" aria-live="polite"></div>
+      </div>
+
+      <div class="sec" id="s-end">
+        <p class="eyebrow">Final remarks</p>
+        <blockquote class="pull">"A leader is one who knows the way, goes the way, and shows the way."</blockquote>
+        <p class="cite">John C. Maxwell, quoted in the vision</p>
+        <p class="muted" style="margin-top:16px;font-size:15px">Leadership in Defence is "not a title, but a mission": a continuous process of influencing, inspiring and serving. It is a balance between directing and listening, between giving guidance and allowing space.</p>
+        <div class="row" style="margin-top:20px">
+          <button class="btn" data-goto="quiz">Test yourself: take the quiz</button>
+          <button class="btn ghost" data-goto="scenarios">Try the scenarios</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="panel" id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+      <h2>Knowledge check</h2>
+      <p class="sub muted" style="margin-bottom:20px">Fourteen questions drawn from the vision. Questions and answer order are shuffled each time.</p>
+      <div id="quiz"></div>
+    </section>
+
+    <!-- ================= SCENARIOS ================= -->
+    <section class="panel" id="panel-scenarios" role="tabpanel" aria-labelledby="tab-scenarios" hidden>
+      <h2>Lead by example: scenarios</h2>
+      <p class="sub muted" style="margin-bottom:20px">Six short situations. Pick what you would do, then see how the vision would read it. These scenarios were written for this app to apply the vision; they are not part of the official document.</p>
+      <div id="scenarios"></div>
+    </section>
+
+    <!-- ================= REFLECT ================= -->
+    <section class="panel" id="panel-reflect" role="tabpanel" aria-labelledby="tab-reflect" hidden>
+      <h2>Reflect</h2>
+      <p class="sub muted" style="margin-bottom:6px">The vision closes each topic with questions for self-reflection. Write your answers here. They are saved only in this browser, on this device.</p>
+      <div class="row" style="margin:14px 0 18px">
+        <button class="btn" id="copy-notes" type="button">Copy my reflections</button>
+        <button class="btn ghost" id="clear-notes" type="button">Clear all</button>
+        <span class="toast" id="toast" role="status"></span>
+      </div>
+      <div id="prompts"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><b>About this guide.</b> An independent learning aid by Hunter's War. It summarises and paraphrases <i>Leading by Example: Defence Leadership Vision</i> (2025 edition), © Belgian Defence, Defence Centre for Leadership. Short quotations are used with attribution. It is not an official publication and is not affiliated with or endorsed by Belgian Defence.</p>
+      <p>For the authoritative text, read the original brochure. The scenarios and the style finder are illustrative applications written for this app.</p>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- storage helpers (every access guarded) ---------- */
+  var STORE = "hw-leadership-v1";
+  var state = { quizBest: null, scnDone: {}, notes: {} };
+  try {
+    var raw = localStorage.getItem(STORE);
+    if (raw) { var p = JSON.parse(raw); if (p && typeof p === "object") { state.quizBest = typeof p.quizBest === "number" ? p.quizBest : null; state.scnDone = p.scnDone || {}; state.notes = p.notes || {}; } }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} }
+
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  /* ---------- content ---------- */
+  var LAYERS = [
+    { id: "context", name: "CONTEXT", who: "Internal & external", tag: "The environment you lead in",
+      summary: "Context largely determines the need for direction and the leadership style. Defence has to prepare current and future leaders for continuous change, and bring followers into that process.",
+      points: ["Adapt yourself and your team to the internal context.", "Consider external factors, evolving contexts and geopolitical dynamics.", "Translate Defence's strategic goals into practice and an inspiring vision for your team.", "In times of change, act as a role model, with leading by example at the core."],
+      ask: ["What do you do to ensure that everyone feels safe to take responsibility?", "How do you adapt your way of leading when the situation changes?"] },
+    { id: "group", name: "GROUP", who: "Followers", tag: "The people you lead",
+      summary: "Leadership is shaped by the group as well as the leader. The aim is to turn a collection of individuals into a cohesive team, and to recognise followership as an active, meaningful role.",
+      points: ["Adapt your leadership style to the group and its needs.", "Listen to your followers.", "Stimulate interaction, create an optimal working environment and ensure psychological safety.", "Build a 'learning group' that grows together, and value unity in diversity."],
+      ask: ["How do you ensure your team knows what the objectives are and why they matter?", "What do you do to communicate effectively and prevent misunderstandings?"] },
+    { id: "do", name: "DO", who: "Leaders", tag: "What effective leaders do",
+      summary: "Leaders inspire by leading by example and adapt their style to the situation. They make decisions and implement them with their team, with a strong focus on preparation and open communication.",
+      points: ["Analyse situations, set objectives and define a vision.", "Decide, communicate, inspire, motivate, lead and support to achieve objectives.", "Adapt to situations and to the group.", "Treat both success and failure as chances for reflection, feedback and growth."],
+      ask: ["How do you adapt your leadership style when working with different people?", "What do you do to help your team improve and come up with new ideas?"] },
+    { id: "know", name: "KNOW", who: "Leaders", tag: "What effective leaders know",
+      summary: "Leadership requires a range of skills that can be developed. Leaders keep building their professional and behavioural competences through experience, reflection and targeted development, always grounded in values.",
+      points: ["Cultivate and apply competences (knowledge, skills, attitudes) grounded in values.", "Combine professional competences with behavioural competences.", "Develop human, technical and conceptual skills, weighted by the level you lead at.", "Embody the Defence values: respect, courage, integrity and loyalty."],
+      ask: ["Which behavioural competences do you apply to lead effectively?", "How do your personal values align with the values of Defence?", "What can you do to ensure continuous growth as a leader?"] },
+    { id: "be", name: "BE", who: "Who you are", tag: "The core of the model",
+      summary: "The core focuses on who you are as a person. Everything else in the model builds from here.",
+      points: ["<b>Self-aware:</b> know your character, personality, style, strengths, weaknesses and motivations, and how others see you.", "<b>Authentic:</b> act with integrity, stay true to your values, be transparent, show moral courage and be open to feedback.", "<b>Ethical:</b> be guided by a moral compass and act in line with norms and values, strengthening each other ethically.", "<b>Physically and mentally fit:</b> manage stress, act efficiently and stay calm, because your decisions affect your team and the organisation."],
+      ask: ["How do you see yourself as a leader? Which great leader would you take as an example? Why?", "Are you aware of your strengths and weaknesses? Are you open to feedback?", "Do you have the moral courage to speak up when something isn't right?"] }
+  ];
+
+  var VALUES = [
+    { k: "R", name: "Respect", d: "Listening to and treating others fairly, even under pressure." },
+    { k: "C", name: "Courage", d: "Taking responsibility, setting boundaries and not avoiding difficult messages." },
+    { k: "I", name: "Integrity", d: "Consistency between what you think, what you say and what you do." },
+    { k: "L", name: "Loyalty", d: "Commitment to the mission, the team and the task, without losing critical judgement." }
+  ];
+
+  var CLUSTERS = [
+    { name: "Carrying out tasks", items: ["Showing a vision", "Thinking in solutions", "Planning, evaluating, adjusting", "Setting objectives", "Organising", "Deciding", "Supporting change"] },
+    { name: "Information management", items: ["Writing", "Managing information", "Building understanding"] },
+    { name: "Relationship with team members", items: ["Providing direction", "Leading by example", "Motivating", "Managing conflicts", "Fostering development"] },
+    { name: "Personal behaviour", items: ["Being loyal", "Acting with integrity", "Being flexible", "Developing competences", "Managing time and stress", "Respecting the rules", "Showing moral courage", "Being results-oriented", "Being proactive"] },
+    { name: "Interpersonal behaviour", items: ["Collaborating", "Respecting others", "Communicating", "Negotiating", "Building and maintaining relationships", "Providing a service"] }
+  ];
+
+  var FORCES = [
+    { id: "army", name: "Army", lines: [
+      "The Army prepares troops to win combat operations on the ground, always with respect for the adversary and the local population.",
+      "Group identity takes precedence over individual interests. Everyone must be able to rely on one another, which creates deeper bonds of trust than in most professions, and the leader sustains the <i>esprit de corps</i>.",
+      "Trust cannot be imposed; it must be earned through daily competence and exemplary behaviour: discipline, courage, sense of duty, loyalty and integrity. On that trust, leaders can delegate in the spirit of <b>Mission Command</b>."] },
+    { id: "air", name: "Air Force", lines: [
+      "The Air Force operates at the edge of technology, aiming for air superiority and precision effects. \"It is not about being good, it is about being the best.\"",
+      "That level of performance depends on teamwork: \"Although the tip of the spear is sharp, you need a long stick to be effective.\" Every member (pilot, mechanic, planner, guard, support) needs to feel part of the team.",
+      "Leaders balance encouraging, mentoring and steering, know their systems' tactics, strengths and weaknesses, and stay open, honest and genuine."] },
+    { id: "navy", name: "Navy", lines: [
+      "Navy leadership is about \"setting course for the future together\": inspiring, connecting and empowering people, whether professional, reservist or civilian.",
+      "Strong onboarding welcomes new colleagues into a culture of trust and continuous development. Innovation takes courage, so leaders create space for ideas and experimentation, with attention to safety.",
+      "Diversity is a strength, and risk management \"must not be a brake, but a compass\". Leadership means \"not hierarchy, but responsibility, vision and trust.\""] },
+    { id: "med", name: "Medical Service", lines: [
+      "Medical detachments are built from specialists across different units and led by commanders who may not share their technical expertise. The leader must win commitment to a common goal and listen closely so no one drifts away.",
+      "The wellbeing of the patient is the absolute priority. Medical leaders manage conflicts of interest (patient versus military mission) with a strong moral compass and continuous reflection on values.",
+      "The guiding principle is <i>omnia omnibus</i>: ready always, and for anyone who needs care."] },
+    { id: "cyber", name: "Cyber Force", lines: [
+      "Cyber leadership fosters a culture of change and continuous learning, rooted in trust, in an environment without temporal or spatial boundaries where vigilance, precision and legal and ethical standards are essential.",
+      "It is human-centred, built on loyalty, respect, courage, integrity and humility, and relies on a diversity of profiles: military, civilians, young talents and experts. The leader may not master every technical detail, so trust enables a high level of delegation and operational autonomy.",
+      "Its mantra is <b>\"Cyber Force through partnerships\"</b>, and it aims for a future of <b>\"Confidence &amp; Command\"</b>."] }
+  ];
+
+  var QUIZ = [
+    { topic: "What is leadership?", q: "Which of these is NOT one of the three core elements of leadership in the vision?", a: ["A process of ethically based influence", "Achieving common objectives", "The growth and success of individuals and the organisation", "Enforcing obedience through rank and formal power"], c: 3, why: "Leadership is a mutual process of influence \"without coercion or pure power\". Rank alone is not what makes someone a leader." },
+    { topic: "Four levels", q: "Which list gives the four levels of leadership?", a: ["Self, team, organisation, strategic", "Junior, middle, senior, executive", "Tactical, operational, strategic, political", "Individual, section, unit, brigade"], c: 0, why: "Lead self, lead team, lead organisation and lead strategic. Leadership starts with mastering yourself." },
+    { topic: "BE", q: "Which of these is NOT one of the four qualities under BE?", a: ["Self-aware", "Authentic", "Charismatic", "Physically and mentally fit"], c: 2, why: "BE is self-aware, authentic, ethical, and physically and mentally fit. Charisma is mentioned only as one of the trend-sensitive labels for leadership." },
+    { topic: "Defence values", q: "What are the four core values of Defence named in the vision?", a: ["Honour, duty, service, sacrifice", "Respect, courage, integrity, loyalty", "Discipline, obedience, strength, pride", "Trust, humility, excellence, teamwork"], c: 1, why: "Respect, courage, integrity and loyalty. They shape identity and give cohesion and certainty." },
+    { topic: "Defence values", q: "According to the vision, integrity demands consistency between...", a: ["Rank, role and responsibility", "Orders, rules and results", "Thinking, speaking and acting", "Past, present and future"], c: 2, why: "Integrity is consistency between thinking, speaking and acting." },
+    { topic: "KNOW", q: "How does the vision define a competence?", a: ["A natural talent you are born with", "A combination of knowledge, skills and attitudes that can be developed", "A formal qualification awarded by training", "A behaviour required by your rank"], c: 1, why: "A competence combines knowledge, skills and attitudes, and it can be strengthened. That is why even people with less innate talent can become effective leaders." },
+    { topic: "KNOW", q: "Professional competences are best described as...", a: ["Skills for interacting effectively with others", "Technical skills specific to a role, field or profession, gained through education or experience", "The core values shared by all personnel", "Personality traits that stay fixed over time"], c: 1, why: "The interaction skills are the behavioural competences. Professional competences are the technical skills of a role or profession." },
+    { topic: "DO", q: "Which four principles help leaders build a climate of mutual respect, development and operational readiness?", a: ["Command, control, communication, compliance", "Planning, preparing, performing, reviewing", "Authority, discipline, obedience, loyalty", "Idealised influence, inspiring motivation, intellectual stimulation, individualised consideration"], c: 3, why: "These four principles sit under 'inspire through leading by example'." },
+    { topic: "DO", q: "A newly arrived team member with little experience mostly needs...", a: ["Clear guidance and follow-up", "Complete autonomy to find their feet", "To be left alone until they ask", "A leader who avoids giving direction"], c: 0, why: "A new team member needs clear guidance and follow-up; a more experienced colleague benefits most from trust and autonomy." },
+    { topic: "DO", q: "Which is NOT one of the three situational factors a leader should read?", a: ["Relationship with the group", "Group characteristics", "Nature and context of the task", "The leader's rank"], c: 3, why: "The three factors are relationship with the group, group characteristics and the nature and context of the task. Authority should rest on trust and competence, not solely on formal power." },
+    { topic: "DO", q: "In an ethical dilemma where values or norms conflict, the vision says...", a: ["A rule always gives the right answer", "The leader should defer to a superior", "There is no perfect solution without a moral cost, so take responsibility and act from your convictions and Defence's core values", "The leader should avoid deciding until the conflict resolves"], c: 2, why: "The leader is aware of the complexity, dares to choose even when it is difficult, and carries that choice with integrity and determination." },
+    { topic: "GROUP", q: "How does the vision describe followership?", a: ["A subordinate and less important role", "A passive role of carrying out orders", "A temporary stage before becoming a leader", "An active and meaningful role and an essential counterpart to leadership"], c: 3, why: "Followership is an essential counterpart to leadership. Followers are responsible for their actions, but the leader ultimately keeps the final responsibility." },
+    { topic: "CONTEXT", q: "When leading through change, adaptive leadership starts with the leader first...", a: ["Handing the problem back to the team", "'Stepping back' to see the bigger picture", "Waiting for orders from above", "Keeping the existing style unchanged"], c: 1, why: "The leader steps back, identifies the challenges, manages tensions, gives direction first if needed, and then returns the work and responsibility to the team in good time." },
+    { topic: "Presence", q: "The Defence Sergeant Major says that in a dispersed organisation leaders should...", a: ["Accept that presence is only possible face to face", "Avoid technology so as not to lose the human touch", "Delegate presence to their deputies", "Adapt to maintain presence through technology, purposeful communication and honest feedback"], c: 3, why: "Whether physical or virtual, a leader's presence remains a cornerstone of effective leadership. Presence in any form shows willingness to share in the experiences of your people." }
+  ];
+
+  var SCENARIOS = [
+    { title: "The new arrival", setup: "A young soldier joins your section this week. They are keen but have never done this job. A routine task is due by the end of the day.",
+      opts: [
+        { t: "Explain the task clearly, check in regularly and give feedback as they go.", best: true, why: "Matches the vision: a newly arrived team member needs clear guidance and follow-up. A routine task under time pressure also calls for a directive style." },
+        { t: "Hand it over and tell them to come to you if they get stuck, so they learn to be independent.", why: "Autonomy suits experienced people. A newcomer needs more direction first, and you may not hear when they are stuck." },
+        { t: "Ask the team to vote on how to do it so everyone feels included.", why: "A participative approach works with an experienced team on complex tasks. Here, time pressure and inexperience call for clear direction." } ] },
+    { title: "The seasoned team", setup: "Your experienced team has been given a complex, open-ended problem with no standard answer and a few weeks to solve it.",
+      opts: [
+        { t: "Set the objective and explain why it matters, then give the team space to develop the solution, stepping in only to support.", best: true, why: "Experienced groups benefit from trust and autonomy, and complex tasks call for a relationship-oriented style. Meaning ('why') makes objectives powerful." },
+        { t: "Write a detailed step-by-step plan so nothing is left to chance.", why: "Over-directing an experienced team on a complex task wastes their competence and weakens ownership." },
+        { t: "Keep it to yourself and present the finished answer when it is ready.", why: "Objectives only gain real power when they are shared and embraced. Leaving the team out undermines ownership and growth." } ] },
+    { title: "The flaw in the plan", setup: "You have briefed your plan. A junior team member quietly tells you afterwards that they think one step is flawed.",
+      opts: [
+        { t: "Thank them, listen properly and test their point. If it holds, adjust, and make it clear that speaking up is welcome.", best: true, why: "A courageous follower dares to point out what should be done differently. Leaders create psychological safety, listen and accept feedback, and the final decision and responsibility remain theirs." },
+        { t: "Remind them the plan has been decided and move on, to protect your authority.", why: "Authority rests on trust, not just formal power. Dismissing the concern risks the plan and teaches people to stay silent." },
+        { t: "Change the plan immediately, since they have raised it.", why: "Listening is not the same as automatically complying. Assess the concern first, then decide and take responsibility for the decision." } ] },
+    { title: "No clean answer", setup: "You must choose between two options. Each protects something your team values, and each costs something. There is no policy that settles it.",
+      opts: [
+        { t: "Decide, explain your reasoning honestly, accept the moral cost and stand by the choice.", best: true, why: "The vision acknowledges there is 'no perfect solution without a moral cost'. A leader acts from deepest convictions and Defence's core values, can frame, justify and account for the decision, and shows moral courage." },
+        { t: "Delay the decision until a clearer answer appears.", why: "Avoiding the choice is itself a choice, and often a worse one. Leaders dare to choose even when it is difficult." },
+        { t: "Pass it up the chain so that someone else carries responsibility.", why: "Leaders take responsibility. Escalate when it is genuinely needed, not as a way of avoiding accountability." } ] },
+    { title: "Change they don't want", setup: "A major reorganisation lands on your unit. People are anxious and some are openly resisting.",
+      opts: [
+        { t: "Step back, name the challenges, give clear direction at first, communicate openly, then hand responsibility back to the team in good time.", best: true, why: "That is the adaptive leadership sequence in the vision: step back, identify challenges, manage tensions, give more direction at first to overcome resistance, then return the work to the team so they develop their own solutions." },
+        { t: "Stay quiet until you have all the answers, to avoid creating more anxiety.", why: "Open communication about changes, and addressing people's concerns, builds understanding and trust." },
+        { t: "Tell the team it is all up to them and step away.", why: "Resistance usually needs more direction at first. Responsibility should be returned to the team in good time, not dropped at the start." } ] },
+    { title: "Out of sight", setup: "Your team is spread across several sites and many of them rarely see you in person. You worry they feel disconnected.",
+      opts: [
+        { t: "Maintain your presence with regular purposeful contact, honest feedback and good use of technology, while keeping the basics working without it.", best: true, why: "The Defence Sergeant Major's message: presence, physical or virtual, remains a cornerstone of leadership. Use technology smartly and purposefully, and stay able to operate analogue." },
+        { t: "Accept that distance means less leadership and rely on the chain of command.", why: "In a dispersed organisation leaders must adapt their approach to maintain presence rather than letting it lapse." },
+        { t: "Send frequent mass messages so everyone knows you are active.", why: "Presence is about purposeful communication and honest feedback, not volume. Two-way communication matters." } ] }
+  ];
+
+  var PROMPTS = [
+    { from: "What is leadership?", q: "How do you see yourself as a leader? Which great leader would you take as an example? Why?" },
+    { from: "BE", q: "Are you aware of your strengths and weaknesses?" },
+    { from: "BE", q: "Do you have a concrete plan to improve your areas of development?" },
+    { from: "BE", q: "Are you open to receiving feedback? Have you ever asked a colleague or follower how they perceive you as a leader?" },
+    { from: "BE", q: "Do you have the moral courage to speak up when something isn't right?" },
+    { from: "KNOW", q: "Which behavioural competences do you apply to lead effectively?" },
+    { from: "KNOW", q: "How do your personal values align with the values of Defence?" },
+    { from: "KNOW", q: "What can you do to ensure continuous growth as a leader?" },
+    { from: "DO", q: "How do you adapt your leadership style when working with different people?" },
+    { from: "DO", q: "What do you do to help your team improve and come up with new ideas?" },
+    { from: "GROUP", q: "How do you ensure your team knows what the objectives are and why they matter?" },
+    { from: "GROUP", q: "What do you do to communicate effectively and prevent misunderstandings?" },
+    { from: "CONTEXT", q: "What do you do to ensure that everyone feels safe to take responsibility?" },
+    { from: "CONTEXT", q: "How do you adapt your way of leading when the situation changes?" }
+  ];
+
+  /* ---------- tabs ---------- */
+  var TABS = ["learn", "quiz", "scenarios", "reflect"];
+  function toContent() { window.scrollTo(0, $("header.hero").offsetHeight); }
+  function showTab(name, pushHash) {
+    if (TABS.indexOf(name) < 0) name = "learn";
+    TABS.forEach(function (t) {
+      var on = t === name;
+      $("#tab-" + t).setAttribute("aria-selected", on ? "true" : "false");
+      $("#tab-" + t).tabIndex = on ? 0 : -1;
+      $("#panel-" + t).hidden = !on;
+    });
+    if (pushHash) { try { history.replaceState(null, "", "#" + name); } catch (e) { location.hash = name; } toContent(); }
+  }
+  $$(".tab").forEach(function (b) {
+    b.addEventListener("click", function () { showTab(b.dataset.tab, true); });
+    b.addEventListener("keydown", function (e) {
+      var i = TABS.indexOf(b.dataset.tab), n = null;
+      if (e.key === "ArrowRight") n = (i + 1) % TABS.length;
+      else if (e.key === "ArrowLeft") n = (i + TABS.length - 1) % TABS.length;
+      if (n !== null) { e.preventDefault(); showTab(TABS[n], true); $("#tab-" + TABS[n]).focus(); }
+    });
+  });
+  $$("[data-goto]").forEach(function (b) { b.addEventListener("click", function () { showTab(b.dataset.goto, true); }); });
+
+  /* ---------- progress pills ---------- */
+  function notesAnswered() { return PROMPTS.filter(function (_, i) { return (state.notes[i] || "").trim(); }).length; }
+  function renderProgress() {
+    var sd = Object.keys(state.scnDone).length;
+    $("#progress").innerHTML =
+      '<span class="pill">Quiz best: <b>' + (state.quizBest === null ? "not taken" : state.quizBest + "/" + QUIZ.length) + '</b></span>' +
+      '<span class="pill">Scenarios: <b>' + sd + "/" + SCENARIOS.length + '</b></span>' +
+      '<span class="pill">Reflections: <b>' + notesAnswered() + "/" + PROMPTS.length + '</b></span>';
+  }
+
+  /* ---------- BE-KNOW-DO model ---------- */
+  function initModel() {
+    var stack = $("#stack"), detail = $("#detail");
+    stack.innerHTML = LAYERS.map(function (l) {
+      return '<button type="button" class="layer" data-id="' + l.id + '" aria-pressed="false"><span class="name">' + l.name + '</span><span class="who">' + esc(l.who) + "</span></button>";
+    }).join("");
+    function select(id) {
+      var l = LAYERS.filter(function (x) { return x.id === id; })[0];
+      $$(".layer", stack).forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.id === id ? "true" : "false"); });
+      detail.innerHTML = '<p class="tag">' + esc(l.tag) + "</p><h3>" + l.name + "</h3><p>" + esc(l.summary) + "</p>" +
+        '<ul class="tidy" style="margin-top:12px">' + l.points.map(function (p) { return "<li>" + (p.indexOf("<b>") === 0 ? p : esc(p)) + "</li>"; }).join("") + "</ul>" +
+        '<div class="ask"><b>Ask yourself</b><ul>' + l.ask.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ul></div>";
+    }
+    stack.addEventListener("click", function (e) { var b = e.target.closest(".layer"); if (b) select(b.dataset.id); });
+    select("be");
+  }
+
+  function initStatic() {
+    $("#values").innerHTML = VALUES.map(function (v) {
+      return '<details class="acc"><summary><span class="value-title"><span class="value-ic" aria-hidden="true">' + v.k + "</span>" + v.name + '</span></summary><div class="body">' + esc(v.d) + "</div></details>";
+    }).join("");
+    $("#clusters").innerHTML = CLUSTERS.map(function (c) {
+      return '<details class="acc"><summary>' + esc(c.name) + '</summary><div class="body"><div class="chips">' + c.items.map(function (i) { return '<span class="chip">' + esc(i) + "</span>"; }).join("") + "</div></div></details>";
+    }).join("");
+
+    var chips = $("#force-chips"), body = $("#force-body");
+    chips.innerHTML = FORCES.map(function (f) { return '<button type="button" data-id="' + f.id + '" aria-pressed="false">' + esc(f.name) + "</button>"; }).join("");
+    function force(id) {
+      var f = FORCES.filter(function (x) { return x.id === id; })[0];
+      $$("button", chips).forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.id === id ? "true" : "false"); });
+      body.innerHTML = "<h3>" + esc(f.name) + "</h3>" + f.lines.map(function (l) { return '<p class="muted" style="font-size:15px">' + l + "</p>"; }).join("");
+    }
+    chips.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) force(b.dataset.id); });
+    force("army");
+  }
+
+  /* ---------- style finder ---------- */
+  function initFinder() {
+    var sel = { team: "new", task: "routine" };
+    var R = {
+      "new|routine": { on: 0, name: "Lead (directive)", text: "Give clear direction and follow up closely. A newcomer needs clear guidance, and routine work under time pressure calls for a directive style. Explain why the task matters." },
+      "new|complex": { on: 1, name: "Guide", text: "Combine clear direction with real dialogue. The complexity invites a relationship-oriented style, while a less experienced team still needs guidance and follow-up." },
+      "exp|routine": { on: 3, name: "Brief, then delegate", text: "Time pressure justifies a short, directive brief, but an experienced team benefits most from trust and autonomy, so state the intent and let them execute." },
+      "exp|complex": { on: 2, name: "Support and delegate", text: "Go participative. Share the objective and its meaning, trust the team's competence and give them the space to develop their own solutions, supporting where needed." }
+    };
+    var names = ["Leading", "Guiding", "Supporting", "Delegating"];
+    function render() {
+      var r = R[sel.team + "|" + sel.task];
+      $("#result").innerHTML = '<p class="eyebrow">Suggested approach</p><p class="big">' + r.name + "</p><p class=\"muted\" style=\"font-size:15px\">" + esc(r.text) + '</p><div class="modes" aria-label="Closest of the four modes">' +
+        names.map(function (n, i) { return '<span class="mode' + (i === r.on ? " on" : "") + '">' + n + "</span>"; }).join("") + "</div>";
+    }
+    function bind(id, key) {
+      var el = $(id);
+      el.addEventListener("click", function (e) {
+        var b = e.target.closest("button"); if (!b) return;
+        sel[key] = b.dataset.v;
+        $$("button", el).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        render();
+      });
+    }
+    bind("#seg-team", "team"); bind("#seg-task", "task"); render();
+  }
+
+  /* ---------- quiz ---------- */
+  function initQuiz() {
+    var root = $("#quiz"), order, idx, score, missed, locked;
+    function start() {
+      order = shuffle(QUIZ).map(function (q) {
+        var opts = q.a.map(function (t, i) { return { t: t, ok: i === q.c }; });
+        return { topic: q.topic, q: q.q, opts: shuffle(opts), why: q.why };
+      });
+      idx = 0; score = 0; missed = []; locked = false;
+      question();
+    }
+    function question() {
+      var q = order[idx], L = ["A", "B", "C", "D"];
+      locked = false;
+      root.innerHTML = '<div class="qhead"><span>Question ' + (idx + 1) + " of " + order.length + "</span><span>" + esc(q.topic) + '</span></div><div class="bar"><i style="width:' + (idx / order.length * 100) + '%"></i></div>' +
+        '<p class="question" id="qtext">' + esc(q.q) + '</p><div class="opts" role="group" aria-labelledby="qtext">' +
+        q.opts.map(function (o, i) { return '<button type="button" class="opt" data-i="' + i + '"><span class="k">' + L[i] + "</span><span>" + esc(o.t) + "</span></button>"; }).join("") + '</div><div id="fb" aria-live="polite"></div>';
+    }
+    root.addEventListener("click", function (e) {
+      var b = e.target.closest(".opt");
+      if (b && !locked) {
+        locked = true;
+        var q = order[idx], pick = +b.dataset.i, ok = q.opts[pick].ok;
+        if (ok) score++; else missed.push(q);
+        $$(".opt", root).forEach(function (el, i) {
+          el.disabled = true;
+          if (q.opts[i].ok) el.classList.add("right");
+          else if (i === pick) el.classList.add("wrong");
+          else el.classList.add("dim");
+        });
+        var last = idx === order.length - 1;
+        $("#fb").innerHTML = '<div class="why ' + (ok ? "good" : "bad") + '"><b class="verdict">' + (ok ? "Correct" : "Not quite") + "</b>" + esc(q.why) + '</div><div class="row" style="margin-top:14px"><button type="button" class="btn" id="next">' + (last ? "See my score" : "Next question") + "</button></div>";
+        $("#next").focus();
+        return;
+      }
+      if (e.target.id === "next") { idx++; if (idx < order.length) { question(); toContent(); } else finish(); }
+      if (e.target.id === "again") start();
+      if (e.target.id === "tolearn") showTab("learn", true);
+    });
+    function finish() {
+      var pct = score / order.length, msg = pct === 1 ? "A perfect score. You know the vision." : pct >= 0.75 ? "Strong grasp of the model." : pct >= 0.5 ? "A solid start. Review the topics below." : "Worth another read of the Learn tab, then try again.";
+      if (state.quizBest === null || score > state.quizBest) { state.quizBest = score; save(); }
+      renderProgress();
+      root.innerHTML = '<div class="card" style="text-align:center;padding:28px 20px"><p class="eyebrow">Your score</p><p class="score-big">' + score + '<span style="font-size:28px;color:var(--dim)">/' + order.length + "</span></p><p class=\"muted\" style=\"margin-top:8px\">" + msg + "</p>" +
+        '<p class="note" style="margin-top:6px">Best so far: ' + state.quizBest + "/" + order.length + "</p></div>" +
+        (missed.length ? '<h3 style="margin:22px 0 8px">Review what you missed</h3><div class="review">' + missed.map(function (m) { return "<div><span>" + esc(m.topic) + "</span>" + esc(m.q) + '<br><b style="color:#fff">' + esc(m.opts.filter(function (o) { return o.ok; })[0].t) + "</b></div>"; }).join("") + "</div>" : "") +
+        '<div class="row" style="margin-top:22px"><button type="button" class="btn" id="again">Try again</button><button type="button" class="btn ghost" id="tolearn">Back to Learn</button></div>';
+      toContent();
+    }
+    start();
+  }
+
+  /* ---------- scenarios ---------- */
+  function initScenarios() {
+    var root = $("#scenarios"), i = 0, chosen = false;
+    function render() {
+      var s = SCENARIOS[i], L = ["A", "B", "C"];
+      chosen = false;
+      root.innerHTML = '<div class="qhead"><span>Scenario ' + (i + 1) + " of " + SCENARIOS.length + "</span><span>" + (state.scnDone[i] ? "Completed" : "") + '</span></div><div class="bar"><i style="width:' + (i / SCENARIOS.length * 100) + '%"></i></div>' +
+        '<div class="scn-setup"><p class="eyebrow">' + esc(s.title) + "</p>" + esc(s.setup) + '</div><p class="question" style="font-size:16px" id="stext">What do you do?</p><div class="opts" role="group" aria-labelledby="stext">' +
+        s.opts.map(function (o, k) { return '<button type="button" class="opt" data-i="' + k + '"><span class="k">' + L[k] + "</span><span>" + esc(o.t) + "</span></button>"; }).join("") + '</div><div id="sfb" aria-live="polite"></div>';
+    }
+    root.addEventListener("click", function (e) {
+      var b = e.target.closest(".opt");
+      if (b && !chosen) {
+        chosen = true;
+        var s = SCENARIOS[i], pick = +b.dataset.i, o = s.opts[pick];
+        $$(".opt", root).forEach(function (el, k) { el.disabled = true; if (s.opts[k].best) el.classList.add("right"); else if (k === pick) el.classList.add("wrong"); else el.classList.add("dim"); });
+        state.scnDone[i] = true; save(); renderProgress();
+        var last = i === SCENARIOS.length - 1;
+        var extra = o.best ? "" : '<p style="margin-top:8px"><b style="color:#fff">The vision favours option ' + ["A", "B", "C"][s.opts.map(function (x) { return x.best; }).indexOf(true)] + ":</b> " + esc(s.opts.filter(function (x) { return x.best; })[0].why) + "</p>";
+        $("#sfb").innerHTML = '<div class="why ' + (o.best ? "good" : "bad") + '"><b class="verdict">' + (o.best ? "Well judged" : "Consider this") + "</b>" + esc(o.why) + extra + '</div><div class="row" style="margin-top:14px">' +
+          (last ? '<button type="button" class="btn" id="srestart">Start over</button><button type="button" class="btn ghost" id="sreflect">Go to Reflect</button>' : '<button type="button" class="btn" id="snext">Next scenario</button>') + "</div>";
+        var f = $("#snext") || $("#srestart"); if (f) f.focus();
+        return;
+      }
+      if (e.target.id === "snext") { i++; render(); toContent(); }
+      if (e.target.id === "srestart") { i = 0; render(); toContent(); }
+      if (e.target.id === "sreflect") showTab("reflect", true);
+    });
+    render();
+  }
+
+  /* ---------- reflect ---------- */
+  function initReflect() {
+    var root = $("#prompts"), toast = $("#toast"), tt;
+    function say(m) { toast.textContent = m; clearTimeout(tt); tt = setTimeout(function () { toast.textContent = ""; }, 2500); }
+    root.innerHTML = PROMPTS.map(function (p, i) {
+      return '<div class="prompt"><span class="from">' + esc(p.from) + '</span><label for="n' + i + '">' + esc(p.q) + '</label><textarea id="n' + i + '" data-i="' + i + '" placeholder="Your thoughts..."></textarea></div>';
+    }).join("");
+    $$("textarea", root).forEach(function (t) { t.value = state.notes[t.dataset.i] || ""; });
+    root.addEventListener("input", function (e) {
+      var t = e.target; if (t.tagName !== "TEXTAREA") return;
+      state.notes[t.dataset.i] = t.value; save(); renderProgress();
+    });
+    $("#copy-notes").addEventListener("click", function () {
+      var text = "Leading by Example: my reflections\n\n" + PROMPTS.map(function (p, i) { return (state.notes[i] || "").trim() ? "[" + p.from + "] " + p.q + "\n" + state.notes[i].trim() : ""; }).filter(Boolean).join("\n\n");
+      if (!notesAnswered()) { say("Nothing to copy yet."); return; }
+      function ok() { say("Copied to clipboard."); }
+      function fallback() {
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy") ? ok() : say("Couldn't copy. Select the text manually."); } catch (e) { say("Couldn't copy. Select the text manually."); }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+    $("#clear-notes").addEventListener("click", function () {
+      if (!notesAnswered()) { say("Already empty."); return; }
+      if (!confirm("Clear all of your written reflections? This can't be undone.")) return;
+      state.notes = {}; save(); $$("textarea", root).forEach(function (t) { t.value = ""; }); renderProgress(); say("Cleared.");
+    });
+  }
+
+  /* ---------- boot ---------- */
+  initModel(); initStatic(); initFinder(); initQuiz(); initScenarios(); initReflect(); renderProgress();
+  var h = (location.hash || "").replace("#", "");
+  showTab(TABS.indexOf(h) >= 0 ? h : "learn", false);
+  window.addEventListener("hashchange", function () { var x = location.hash.replace("#", ""); if (TABS.indexOf(x) >= 0) showTab(x, false); });
+})();
+</script>
+</body>
+</html>
